@@ -18,11 +18,8 @@ import java.net.URI;
 public class OrderController {
 
 
-
-
-
-       public static final String PAYMENT_URL = "http://localhost:8001";
-    //   public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
+//       public static final String PAYMENT_URL = "http://localhost:8001";  //单价版
+  public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";  //集群，同一个服务名，多个端口，负载均衡调用
 
     @Resource
     private RestTemplate restTemplate;

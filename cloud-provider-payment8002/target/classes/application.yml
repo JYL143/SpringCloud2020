@@ -1,0 +1,28 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: cloud-payment-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/db2020?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 565649
+    driver-class-name: com.mysql.cj.jdbc.Driver           #mysql驱动包
+    type: com.alibaba.druid.pool.DruidDataSource          #当前数据源操作类型
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.jyl.enity                     #别名
+
+eureka:
+  client:
+    register-with-eureka: true   #是否将自己注册到注册中心,集群必须设置为true配合ribbon
+    fetch-registry: true    #是否从服务端抓取已有的注册信息
+    service-url:
+#      defaultZone: http://localhost:7001/eureka  #单机版
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka   #集群版
+  instance:
+    prefer-ip-address: true                     # 注册服务的时候使用服务的ip地址，就是点击注册中心页服务的超链接显示的是ip地址
+    instance-id: payment8002                    # 注册中心的服务的超链接名字自定义

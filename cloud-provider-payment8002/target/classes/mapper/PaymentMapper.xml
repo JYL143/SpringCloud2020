@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jyl.dao.PaymentDao">
+
+
+    <resultMap id="BaseResultMap" type="com.jyl.enity.Payment">
+        <id column="id" property="id" jdbcType="BIGINT"></id>
+        <id column="serial" property="serial" jdbcType="VARCHAR"></id>
+    </resultMap>
+
+    <!--后面两个参数的意思 设置是否使用JDBC的getGenereatedKeys方法获取主键并赋值到keyProperty设置的领域模型属性中 keyProperty 取id的key值-->
+    <insert id="create" parameterType="payment" useGeneratedKeys="true" keyProperty="id">
+        insert into payment(serial) values(#{serial});
+    </insert>
+
+
+    <select id="getPaymentById" parameterType="long" resultMap="BaseResultMap">
+        select * from payment
+        where id = #{id};
+    </select>
+
+</mapper>

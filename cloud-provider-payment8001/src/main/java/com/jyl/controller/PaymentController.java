@@ -4,11 +4,15 @@ package com.jyl.controller;
 import com.jyl.enity.CommonResult;
 import com.jyl.enity.Payment;
 import com.jyl.service.PaymentService;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @RestController
@@ -21,7 +25,8 @@ public class PaymentController {
     @Value("${server.port}")
     private String serverPort;
 
-
+    @Resource
+    private DiscoveryClient discoveryClient; //暴露服务 spring包
 
     @PostMapping(value = "/payment/create")
     public CommonResult create( @RequestBody Payment payment) {
@@ -46,4 +51,17 @@ public class PaymentController {
     }
 
 
+    //测试暴露服务，这里就自测，消费者可以像正常一样的远程访问这个方法就可以获取到这个微服务的信息
+    @GetMapping(value = "/payment/discovery")
+    public Object discovery(){
+        List<String> services = discoveryClient.getServices();  //获取注册中心所有的微服务
+        for (String element : services) {
+            log.info("****element: " +element);
+        }
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE"); //获取具体的微服务，进一步获取微服务信息
+        for (ServiceInstance instance:instances) {
+            log.info(instance.getServiceId()+"\t"+instance.getHost()+"\t"+instance.getPort()+"\t"+instance.getUri());
+        }
+        return this.discoveryClient;
+    }
 }
