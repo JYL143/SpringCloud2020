@@ -52,7 +52,7 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
-        <!--引入eureka客户端  2.x版本使用新的依赖  -->
+        <!--引入eureka客户端  2.x版本使用新的依赖 里面有ribbon  -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>

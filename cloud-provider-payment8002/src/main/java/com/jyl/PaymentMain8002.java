@@ -8,8 +8,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 /**
  *提供者集群8002
  */
-@EnableDiscoveryClient//服务发现
-@EnableEurekaClient //注册服务
+@EnableDiscoveryClient//注册服务于服务发现 适用于多种注册中心 eureka zookeeper  consul
+@EnableEurekaClient //注册服务于服务发现 适用于eureka一种注册中心
 @SpringBootApplication
 public class PaymentMain8002 {
     public static void main(String[] args) {
