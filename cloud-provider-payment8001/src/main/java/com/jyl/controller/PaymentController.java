@@ -80,4 +80,13 @@ public class PaymentController {
         }
         return serverPort;
     }
+
+    /**
+     * 给gateway路由网关用
+     * @return
+     */
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB(){
+        return serverPort;
+    }
 }
