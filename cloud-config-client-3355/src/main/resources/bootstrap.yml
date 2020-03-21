@@ -1,0 +1,28 @@
+#bootstarp.yml优先级比application.yml更高
+server:
+  port: 3355
+
+spring:
+  application:
+    name: config-client
+  cloud:            #客户端配置
+    config:
+      label: master #分支名称
+      name: config  #配置文件名称
+      profile: dev  #读取后缀名称
+      uri: http://localhost:3344  #配置中心地址，访问这个，然后通过这个读取github
+#  rabbitmq:
+#      host: 192.168.113.6
+#      port: 5672
+#      username: guest
+#      password: guest
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+## 暴露监控端点，需要监控依赖，还有这个暴露端口，还有添加一个注解来做动态刷新
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
