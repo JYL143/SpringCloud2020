@@ -13,6 +13,11 @@
 
     <dependencies>
 
+        <!--链路监控zipkin-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
         <!--自己的api -->
         <dependency>
             <groupId>com.jyl</groupId>

@@ -4,7 +4,11 @@ server:
 spring:
   application:
     name: cloud-order-service
-
+  zipkin:                        #链路监控zipkin
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      probability: 1 #采样率 1为全部采集
 eureka:
   client:
     register-with-eureka: true   #是否将自己注册到注册中心,集群必须设置为true配合ribbon

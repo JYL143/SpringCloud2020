@@ -1,0 +1,16 @@
+server:
+  port: 3377
+spring:
+  application:
+    name: nacos-config-client
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848   #nacos服务注册中心的地址
+      config:         #这几个配置就去8848配置中心去找该命名空间下的test分组的yaml文件，在配合另一个yml文件指定的测试环境就知道去配置中心找哪个了
+        server-addr: localhost:8848   #nacos作为配置中心的地址
+        file-extension: yaml          #指定yaml格式的配置
+        group: DEV_GROUP             #指定在这个命名空间下的哪个分组
+        namespace: 5aff57ae-1774-400c-8336-e023238ac6a9   #指定哪个命名空间
+# ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
+# nacos-config-client-dev.yaml   服务名-测试环境.指定什么格式
