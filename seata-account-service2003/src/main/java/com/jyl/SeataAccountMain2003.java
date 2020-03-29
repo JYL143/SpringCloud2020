@@ -1,0 +1,19 @@
+package com.jyl;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+/**
+ * seata中间件处理分布式事务-账户模块2003
+ */
+@EnableFeignClients
+@EnableDiscoveryClient
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+public class SeataAccountMain2003 {
+    public static void main(String[] args) {
+        SpringApplication.run(SeataAccountMain2003.class, args);
+    }
+}
